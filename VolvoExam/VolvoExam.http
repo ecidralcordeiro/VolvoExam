@@ -1,0 +1,6 @@
+@VolvoExam_HostAddress = http://localhost:5293
+
+GET {{VolvoExam_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
