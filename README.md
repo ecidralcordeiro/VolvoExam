@@ -38,3 +38,17 @@ The project follows **Clean Architecture**, organizing code into distinct layers
    - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) installed.
 
 
+
+3. **Run the application:**
+dotnet run --project API
+
+
+4. **Access Swagger UI:**  
+   Open [https://localhost:5001/swagger](https://localhost:7199/swagger) in your browser to explore and test the API endpoints.
+
+
+![image](https://github.com/user-attachments/assets/31e5de67-c965-4227-aa80-2102b1346e14)
+
+
+
+
