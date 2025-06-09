@@ -1,6 +1,7 @@
 using Application.Interfaces;
 using Application.Services;
 using Domain.Interfaces;
+using Infra.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+// Adicione esta linha:
+builder.Services.AddInfrastructure(builder.Configuration);
 
-// Services
-builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 

@@ -1,11 +1,8 @@
 ﻿public class Vehicle
 {
     public Chassis Chassis { get; set; }
-
     public VehicleType Type { get; set; }
-
     public int NumberOfPassengers { get; private set; }
-
     public string Color { get; set; }
 
     public Vehicle(Chassis chassis, VehicleType type, string color)
@@ -13,10 +10,10 @@
         Chassis = chassis;
         Type = type;
         Color = color;
-        NumberOfPassengers = SetPassengerCountByType(type);
+        NumberOfPassengers = GetPassengerCountByType(type);
     }
 
-    private int SetPassengerCountByType(VehicleType type)
+    private int GetPassengerCountByType(VehicleType type)
     {
         return type switch
         {

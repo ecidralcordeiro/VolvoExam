@@ -1,11 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using Application.Interfaces;
+﻿using Application.Interfaces;
+using Application.Mappings;
 using Application.Services;
 using Domain.Interfaces;
+using Infra.Data.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Infra.Ioc;
 
@@ -13,36 +15,19 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        //services.AddDbContext<ApplicationDbContext>(options =>{}); If I want to user DataBase
-
-        services.AddAuthentication(options =>
-        {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(options =>
-        {
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["jwt:secretKey"])),
-                ClockSkew = TimeSpan.Zero
-            };
-        });
+        //services.AddDbContext<ApplicationDbContext>(options =>{}); If you can change the repository to Data BaseO
 
         //Cors
 
 
-        // Configurar o AutoMapper
-        //services.AddAutoMapper(typeof(UserMappingProfile));
+        // Config AutoMapper
+        services.AddAutoMapper(typeof(VehicleMappingProfile));
 
         // Repositories
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IVehicleRepository, VehicleRepository>();
 
         // Services
-        services.AddScoped<IUserService, UserService>();
-        //services.AddScoped<IAuthenticate, AuthenticateService>();
+        services.AddScoped<IVehicleService, VehicleService>();
 
         return services;
     }

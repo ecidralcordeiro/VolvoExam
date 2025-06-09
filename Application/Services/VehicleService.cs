@@ -1,8 +1,6 @@
-﻿using Application.DTOs;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using AutoMapper;
 using Domain.Interfaces;
-using Domain.Models;
 
 namespace Application.Services;
 
@@ -18,13 +16,11 @@ public class VehicleService : IVehicleService
     }
     public VehicleDto CreateVehicle(VehicleDto vehicleDto)
     {
-        // Verifica unicidade do chassi
-        string chassisId = $"{vehicleDto.ChassisSeries}-{vehicleDto.ChassisNumber}";
-        var existing = _repository.GetVehicleByChassisId(chassisId);
-        if (existing != null)
-            throw new InvalidOperationException($"Vehicle with ChassisId {chassisId} already exists.");
-
         var vehicle = _mapper.Map<Vehicle>(vehicleDto);
+        var existing = _repository.GetVehicleByChassisId(vehicle.Chassis.Id);
+        if (existing != null)
+            throw new InvalidOperationException($"Vehicle with ChassisId {vehicle.Chassis.Id} already exists.");
+
         var createdVehicle = _repository.CreateVehicle(vehicle);
         return _mapper.Map<VehicleDto>(createdVehicle);
     }
