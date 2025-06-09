@@ -17,9 +17,6 @@ public static class DependencyInjection
     {
         //services.AddDbContext<ApplicationDbContext>(options =>{}); If you can change the repository to Data BaseO
 
-        //Cors
-
-
         // Config AutoMapper
         services.AddAutoMapper(typeof(VehicleMappingProfile));
 

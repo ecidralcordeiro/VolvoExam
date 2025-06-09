@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-public class VehicleDto
+public class VehicleDtoCreate
 {
     [Required]
     public string ChassisSeries { get; set; }
@@ -16,6 +16,5 @@ public class VehicleDto
     [Required]
     [MinLength(1)]
     public string Color { get; set; }
-    public string ChassisId { get; set; }
 
 }

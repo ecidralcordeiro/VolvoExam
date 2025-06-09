@@ -16,12 +16,12 @@ public class VehicleController : ControllerBase
 
     // Insert a new vehicle
     [HttpPost]
-    public IActionResult CreateVehicle([FromBody] VehicleDto vehicleDto)
+    public IActionResult CreateVehicle([FromBody] VehicleDtoCreate vehicleDto)
     {
         try
         {
             var created = _vehicleService.CreateVehicle(vehicleDto);
-            return CreatedAtAction(nameof(GetByChassisId), new { chassisId = $"{vehicleDto.ChassisSeries}-{vehicleDto.ChassisNumber}" }, created);
+            return Ok( new { chassisId = $"{vehicleDto.ChassisSeries}-{vehicleDto.ChassisNumber}" });
         }
         catch (InvalidOperationException ex)
         {

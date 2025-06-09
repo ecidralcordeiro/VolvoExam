@@ -14,9 +14,16 @@ public class VehicleService : IVehicleService
         _repository = vehicleRepository;
         _mapper = mapper;
     }
-    public VehicleDto CreateVehicle(VehicleDto vehicleDto)
+    public VehicleDto CreateVehicle(VehicleDtoCreate vehicleDto)
     {
-        var vehicle = _mapper.Map<Vehicle>(vehicleDto);
+        var chassis = new Chassis
+        {
+            ChassisNumber = vehicleDto.ChassisNumber,
+            ChassisSeries = vehicleDto.ChassisSeries
+        };
+
+        var vehicle = new Vehicle(chassis, vehicleDto.Type, vehicleDto.Color);
+
         var existing = _repository.GetVehicleByChassisId(vehicle.Chassis.Id);
         if (existing != null)
             throw new InvalidOperationException($"Vehicle with ChassisId {vehicle.Chassis.Id} already exists.");

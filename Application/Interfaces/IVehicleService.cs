@@ -8,7 +8,7 @@ namespace Application.Interfaces;
 
 public interface IVehicleService
 {
-    VehicleDto CreateVehicle(VehicleDto dto);
+    VehicleDto CreateVehicle(VehicleDtoCreate dto);
     VehicleDto UpdateVehicleColor(string chassisId, string newColor);
     List<VehicleDto> GetAllVehicles();
     VehicleDto GetVehicleByChassisId(string chassisId);
