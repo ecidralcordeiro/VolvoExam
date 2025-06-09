@@ -4,18 +4,12 @@ public class VehicleDto
 {
     [Required]
     public string ChassisSeries { get; set; }
-
-    [Required]
-    [Range(1, uint.MaxValue, ErrorMessage = "ChassisNumber must be a positive integer.")]
     public uint ChassisNumber { get; set; }
 
-    [Required]
-    [EnumDataType(typeof(VehicleType))]
     public VehicleType Type { get; set; }
 
-    [Required]
-    [MinLength(1)]
+    public string TypeText => Type.ToString();
+ 
     public string Color { get; set; }
     public string ChassisId { get; set; }
-
 }

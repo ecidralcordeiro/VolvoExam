@@ -12,9 +12,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Adicione esta linha:
 builder.Services.AddInfrastructure(builder.Configuration);
 
+/* ////////////If you want to send the enum as text and not number
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+    });
+*/
 
 var app = builder.Build();
 
